@@ -1,5 +1,4 @@
-const productosPanel=document.getElementById('productos'); 
-const filtro = "";  
+const productosPanel=document.getElementById('productos');   
 const productos = [{
         "Id": 1,
         "Nombre": "Gordon`s",
@@ -49,16 +48,38 @@ const productos = [{
         "Categoria": "gin"
     }
 ];
-function filtrar(){
-    filtro = document.getElementById("filtro").value;
-};
+
 // document.addEventListener('DOMContentLoaded', async() => { renderCard(productos) });
 window.onload = function() {
 // const renderCard = productos => {
     let productosPanelVista = "";
     productos.forEach(producto => {
         {
-            if(filtro == "" || producto.Categoria.toLowerCase() == filtro){
+            productosPanelVista +=
+                `<div class="col-12 mb-2 col-md-4 col-sm-4">
+                <div class="card">
+                <div class="card-body">
+                <img id="fotoProducto"src="${producto.Foto}"class="card-img-top" style="height:200px">
+                <h5 id="tituloProducto">${producto.Nombre}</h5> 
+                <p id="descripcionProducto">${producto.Descripcion}</p> 
+                <p id="precioProducto">$${ producto.Precio }</p>
+                <button productos-id="${producto.Id}"id="mybtn" name="btnComprar" class="btn btn-success">Comprar</button>
+            </div>
+            </div>
+            </div>
+            `
+
+        }
+        document.getElementById('productos').innerHTML=productosPanelVista;
+    });
+};
+// ----------------Empieza Filter--------------------------
+document.getElementById("btn-filtrar").onclick = function filtrar(){
+    let filtro = document.getElementById("filtro").value;
+    let productosPanelVista = "";
+    productos.forEach(producto => {
+        {
+            if(filtro == "" || producto.Categoria == filtro.toLowerCase()){
                 productosPanelVista +=
                     `<div class="col-12 mb-2 col-md-4 col-sm-4">
                     <div class="card">
@@ -77,8 +98,5 @@ window.onload = function() {
         document.getElementById('productos').innerHTML=productosPanelVista;
     });
 };
-// ----------------Empieza Filter--------------------------
-
-
 
 

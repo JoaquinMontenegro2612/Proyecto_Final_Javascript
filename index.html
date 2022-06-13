@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/desafiocomplementario.css">
     <title>CocteleArte 2.0</title>
-    <script src="./js/index.js" type="module"></script>
+
 </head>
 
 <body>
@@ -21,10 +21,8 @@
         <a title="Encabezado" href="index.html" class="d-flex justify-content-center">
             <img class="w-25 align-items-center" src="./imgs/Coctelearte.gif" alt="coctelearte logo"></a>
         <div class="d-flex justify-content-end align-items-center mx-5">
-             
                 <input class="form-control me-2" type="search" placeholder="Filtro" aria-label="Search" id="filtro">
-                <a class="btn btn-outline-success" onclick='filtrar()'>Filtrar</a>
-           
+                <a id="btn-filtrar"class="btn btn-outline-success">Filtrar</a>
             </div>
         </nav>
         <!-- Termina Nav -->
@@ -46,7 +44,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 <!-- el script defer es para que cargue el dom antes que el script -->
 <!-- el type="module" especifica que debe considerarse como un módulo de Javascript -->
-
+<script src="./js/index.js" type="module"></script>
 </body>
 
 </html>

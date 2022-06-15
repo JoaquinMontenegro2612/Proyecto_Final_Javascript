@@ -1,6 +1,6 @@
 function saludar(){
     let nombre= prompt("Hola,como estas? Me decis tu nombre?");
-    console.log("Hola " + nombre ); 
+    console.log("Hola " + nombre + " Capo, Como va?"); 
 }
 let productosPanel=document.getElementById('productos');   
 let productos = [{

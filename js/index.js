@@ -60,7 +60,7 @@ let productos = [{
 ];
 
 window.onload = function() {
-    // saludar();
+    saludar();
 
     let productosPanelVista = "";
     productos.forEach(producto => {

@@ -1,6 +1,6 @@
 function saludar(){
     let nombre= prompt("Hola,como estas? Me decis tu nombre?");
-    console.log("Hola " + nombre + " Capo, Como va?"); 
+    document.getElementById("saludo").innerHTML=`<p class="text-white text-center ">Hola ${nombre} Bienvenido.</p>`; 
 }
 let productosPanel=document.getElementById('productos');   
 let productos = [{
@@ -60,37 +60,39 @@ let productos = [{
 ];
 
 window.onload = function() {
-    saludar();
-
-    let productosPanelVista = "";
-    productos.forEach(producto => {
-        {
-            productosPanelVista +=
-                `<div class="col-sm-3 w-10 ml-2 mt-2 ">
-                <div class="card text-center bg-dark text-white px-5">
-                <div class="card-body">
-                <img id="fotoProducto"src="${producto.Foto}"class="card-img-top" style="height:100px">
-                <h5 id="tituloProducto">${producto.Nombre}</h5> 
-                <p id="descripcionProducto">${producto.Descripcion}</p> 
-                <p id="precioProducto">$${ producto.Precio }</p>
-                <div class="input-group p-3">
-                <button class="bg-dark text-warning menos input-group-text" onclick="restar('${producto.Id}')">-</button>
-                <input id="${producto.Id}" type="text" class="bg-dark text-white w-25 text-center" value="0" readonly>
-                <button class="bg-dark text-warning mas input-group-text" onclick="sumar('${producto.Id}')">+</button>
-                </div>  
-                <button productos-id="${producto.Id}"id="mybtn" onclick="agregar('${producto.Id}')" name="btnComprar" class="btn btn-success">Comprar</button>
-            </div>
-            </div>
-            </div>
-            `
-        }
-        document.getElementById('productos').innerHTML=productosPanelVista;
-    });
+// saludar();
+    if(document.getElementById('productos') !==null){
+        let productosPanelVista = "";
+        productos.forEach(producto => {
+            {
+                productosPanelVista +=
+                    `<div class="col-sm-3 w-10 ml-2 mt-2 ">
+                    <div class="card text-center bg-dark text-white px-5">
+                    <div class="card-body">
+                    <img id="fotoProducto"src="${producto.Foto}"class="card-img-top" style="height:100px">
+                    <h5 id="tituloProducto">${producto.Nombre}</h5> 
+                    <p id="descripcionProducto">${producto.Descripcion}</p> 
+                    <p id="precioProducto">$${ producto.Precio }</p>
+                    <div class="input-group p-3">
+                    <button class="bg-dark text-warning menos input-group-text" onclick="restar('${producto.Id}')">-</button>
+                    <input id="${producto.Id}" type="text" class="bg-dark text-white w-25 text-center" value="0" readonly>
+                    <button class="bg-dark text-warning mas input-group-text" onclick="sumar('${producto.Id}')">+</button>
+                    </div>  
+                    <button productos-id="${producto.Id}"id="mybtn" onclick="agregar('${producto.Id}')" name="btnComprar" class="btn btn-success">Comprar</button>
+                </div>
+                </div>
+                </div>
+                `
+            }
+            document.getElementById('productos').innerHTML=productosPanelVista;
+        });
+    }
 };
 
 // ----------------Empieza Filter--------------------------
 
-document.getElementById("btn-filtrar").onclick = function filtrar(){
+
+function filtrar(){
     let filtro = document.getElementById("filtro").value;
     let productosPanelVista = "";
     productos.forEach(producto => {
@@ -159,5 +161,107 @@ function actualizarTotal(producto){
     
 };
 
+//-------------------------Empieza Login ------------//
+//-------------------------------------------------------//
+//-------------------------------------------------------//
+// funciones
+const btnGuardar = document.getElementById("guardar");
+const checkbox= document.getElementById("check");
+const email= document.getElementById("email");
+const user = document.querySelector("#user");
+const pass = document.querySelector("#pass");
 
+
+function guardar(valor)
+{
+    let user = { usuario: email.value, pass: password.value};
+    if(user.usuario == "" || user.pass=="")
+    {
+        password.innerText = "No son tu billetera dejale algo escrito por fa!!";
+        return;
+    }
+    else
+    {
+        if(valor==="sessionStorage")
+        {
+            sessionStorage.setItem("item", JSON.stringify(user));
+        }        
+        if (valor === "localStorage") 
+        {
+            localStorage.setItem("item", JSON.stringify(user));
+        }
+    }
+}
+
+function recuperarDatos(){}
+
+function iniciarSesion() 
+{
+    debugger;
+    // 1ero fijarse si existe si existe lo recupera y si no existe
+    // 2do guardar datos en el local storage o en el session storage depende si esta el checkbox 
+    // 3ero abrir el index
+    let usuariosLS = recuperarLS();
+    
+    let usuarioGuardado = usuariosLS.find(userSaved => userSaved.email == email.value);
+    let usuarioCreado = crearUsuario();
+    if (usuarioGuardado == null)
+    {
+        guardarUsuario(usuarioCreado);
+    }
+
+    guardarEnStorage();
+    
+    window.open("./index.html");
+    
+}
+
+function recuperarLS()
+{
+    let datos = JSON.parse(localStorage.getItem("usuarios"));
+    return datos; 
+}
+
+
+
+if (btnGuardar !== undefined && btnGuardar !== null)
+{
+    btnGuardar.addEventListener("click", (e)=>{
+        e.preventDefault();
+        inicioSesion(usuariosLS);
+    });
+}
+function limpiarCampos() 
+{
+    nombre.value = "";
+    userReg.value = "";
+    passReg.value = "";
+    email.value = "";
+}
+function crearUsuario()
+{
+    let mail = email.value;
+    let password = pass.value;
+    const user = new Usuario(mail, password);
+    return user;
+}
+
+function guardarUsuario(usuario)
+{    
+    usuarios.push(usuario);
+}
+
+function guardarEnStorage(){
+    localStorage.setItem(usuarios);
+}
+// btn olvido de contraseña (este ya anda)
+function olvidoPass(){
+    Swal.fire({
+        title: 'JAJA, Colgado',
+        text: 'Pues, te jodes',
+        icon: 'error',
+        confirmButtonText: 'Esta funcion no ha sido desarrollada!!'
+    })
+}
+// finaliza
 

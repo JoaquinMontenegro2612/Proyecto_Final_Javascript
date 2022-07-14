@@ -202,7 +202,6 @@ function iniciarSesion()
     // 2do guardar datos en el local storage o en el session storage depende si esta el checkbox 
     // 3ero abrir el index
     let usuariosLS = recuperarLS();
-    
     let usuarioGuardado = usuariosLS.find(userSaved => userSaved.email == email.value);
     let usuarioCreado = crearUsuario();
     if (usuarioGuardado == null)

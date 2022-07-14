@@ -1,0 +1,9 @@
+.titulo-bnv{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 50px;
+    color: rgb(212, 191, 185);   
+}
+#letras :hover{
+   color: rgb(137, 54, 54);
+   opacity: 60%;
+}

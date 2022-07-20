@@ -1,40 +1,48 @@
-* {
+/* ---------------------------------------------- */
+/* -----------Comienza Pag. Index---------------- */
+/* ---------------------------------------------- */
+* 
+{
     margin: 0%;
     padding: 0%;
 }
 
-.bg-footer{
-    background-color: violet;
-}
-/* #bodyindex {
-    background: rgb(2,0,36);
-background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,127,255,1) 50%, rgba(2,0,36,1) 100%); 
-}
-    */
-#fotoProducto{
+
+#fotoProducto
+{
     width: 10vw;
     height: auto;
-
 }
-.tmnLogo{
+.tmnLogo
+{
     height: 150px;
     width: 150px;
     margin: 5px 30px;
 }
-.tmnBarra{
+.tmnBarra
+{
     width: 100%;
 }
 
-.tmnCarrito{
+.tmnCarrito
+{
     height: 100%;
-
 }
+.btnCoctel{
+    font-size: 15px;
+    color: blue;
+}
+
+/* ---------------------------------------------- */
+/* -----------finaliza Pag. Index---------------- */
+/* ---------------------------------------------- */
 
 /* ---------------------------------------------- */
 /* -----------Comienza Pag. Bienvenida----------- */
 /* ---------------------------------------------- */
 
-#bodybienvenida{
+#bodybienvenida
+{
     margin:0%;
     padding:0%;
     background-image: url(../imgs/fondoindex.png);
@@ -42,10 +50,8 @@ background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,127,255,1) 50%, rg
     display: flex;
 }
 
-/* ---------------------------------------------- */
-/* -----------Comienza Pag. Bienvenida----------- */
-/* ---------------------------------------------- */
-.bg-image-vertical {
+.bg-image-vertical 
+    {
     position: relative;
     overflow: hidden;
     background-repeat: no-repeat;
@@ -53,18 +59,24 @@ background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,127,255,1) 50%, rg
     background-size: auto 100%;
     }
     
-    @media (min-width: 1025px) {
+    @media (min-width: 1025px) 
+    {
     .h-custom-2 {
     height: 100%;
     }
-    }
+}
 
-    .bgColor{
-        background: linear-gradient(to right,#cb232c, #ce1d61);
-    }
-    .remember{
-        margin-bottom: 15px;
-    }
+.bgColor
+{
+    background: linear-gradient(to right,#cb232c, #ce1d61);
+}
+.remember
+{
+margin-bottom: 15px;
+}
 
+/* ---------------------------------------------- */
+/* -----------Finaliza Pag. Bienvenida----------- */
+/* ---------------------------------------------- */
 
 

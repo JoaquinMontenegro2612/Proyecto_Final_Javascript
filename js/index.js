@@ -1,7 +1,8 @@
-function saludar(){
-    let nombre= prompt("Hola,como estas? Me decis tu nombre?");
-    document.getElementById("saludo").innerHTML=`<p class="text-white text-center ">Hola ${nombre} Bienvenido.</p>`; 
-}
+// function saludar()
+// {
+//     let nombre= prompt("Hola,como estas? Me decis tu nombre?");
+//     document.getElementById("saludo").innerHTML=`<p class="text-white text-center ">Hola ${nombre} Bienvenido.</p>`; 
+// }
 let productosPanel=document.getElementById('productos');   
 let productos = [{
         "Id": 1,
@@ -61,18 +62,20 @@ let productos = [{
 
 window.onload = function() {
 // saludar();
-    if(document.getElementById('productos') !==null){
+    if(document.getElementById('productos') !== null){
         let productosPanelVista = "";
         productos.forEach(producto => {
             {
                 productosPanelVista +=
                     `<div class="col-sm-3 w-10 ml-2 mt-2 ">
-                    <div class="card text-center bg-dark text-white px-5">
+                    <div class="card text-center bg-white text-black px-5">
                     <div class="card-body">
                     <img id="fotoProducto"src="${producto.Foto}"class="card-img-top" style="height:100px">
                     <h5 id="tituloProducto">${producto.Nombre}</h5> 
                     <p id="descripcionProducto">${producto.Descripcion}</p> 
                     <p id="precioProducto">$${ producto.Precio }</p>
+                    <button class="btn btn-info" onclick="buscarDetalle('${producto.Categoria}','${producto.Id}')">Descripcion</div>
+                    <p id="detalle${producto.Id}"></p>
                     <div class="input-group p-3">
                     <button class="bg-dark text-warning menos input-group-text" onclick="restar('${producto.Id}')">-</button>
                     <input id="${producto.Id}" type="text" class="bg-dark text-white w-25 text-center" value="0" readonly>
@@ -161,16 +164,36 @@ function actualizarTotal(producto){
     
 };
 
-//-------------------------Empieza Login ------------//
+function buscarDetalle(categoria,id)
+{
+    const url="https://www.thecocktaildb.com/api/json/v1/1/search.php?i=";
+fetch(url + categoria)
+.then(response => response.json())
+.then(data => {
+let detalle = document.getElementById("detalle"+id);
+detalle.innerHTML = data.ingredients[0].strDescription;
+})
+}
+
+//-------------------------------------------------------//
+//-------------------------------------------------------//
+//-------------------------Empieza Login ----------------//
 //-------------------------------------------------------//
 //-------------------------------------------------------//
 // funciones
 const btnGuardar = document.getElementById("guardar");
 const checkbox= document.getElementById("check");
-const email= document.getElementById("email");
-const user = document.querySelector("#user");
-const pass = document.querySelector("#pass");
+const user = document.getElementById("user");
+const pass = document.getElementById("pass");
+let usuarios =[];
 
+if (btnGuardar !== undefined && btnGuardar !== null)
+{
+    btnGuardar.addEventListener("click", (e)=>{
+        e.preventDefault();
+        iniciarSesion(usuariosLS);
+    });
+}
 
 function guardar(valor)
 {
@@ -193,43 +216,86 @@ function guardar(valor)
     }
 }
 
-function recuperarDatos(){}
+//function recuperarDatos(){}
 
 function iniciarSesion() 
 {
     debugger;
-    // 1ero fijarse si existe si existe lo recupera y si no existe
-    // 2do guardar datos en el local storage o en el session storage depende si esta el checkbox 
-    // 3ero abrir el index
-    let usuariosLS = recuperarLS();
-    let usuarioGuardado = usuariosLS.find(userSaved => userSaved.email == email.value);
-    let usuarioCreado = crearUsuario();
-    if (usuarioGuardado == null)
-    {
-        guardarUsuario(usuarioCreado);
-    }
+    let usuario;
 
-    guardarEnStorage();
+    let usuariosLS = recuperarLS();
+    if(usuariosLS == null)
+    {
+        usuario = crearUsuario();
+        guardarUsuario(usuario);
+        debugger;
+        guardarEnStorage();
+    }
+    else
+    {
+        const user = document.getElementById("user");
+        let usuarioGuardado = usuariosLS.find(userSaved => userSaved.email == user.value);
+        if (usuarioGuardado == null)
+        {
+            usuario = crearUsuario();
+            guardarUsuario(usuario);
+            guardarEnStorage();
+        }
+        else
+        {
+            const pass = document.getElementById("pass");
+            if(pass.value == usuarioGuardado.contrasenia)
+            {
+                window.open("./index.html");
+            }
+            else
+            {
+                olvidoPass();
+            }
+        }
+
+    }
     
-    window.open("./index.html");
-    
+}
+
+function crearUsuario()
+{
+    const user = document.getElementById("user");
+    const pass = document.getElementById("pass");
+    let mail = user.value;
+    let password = pass.value;
+    return new Usuario(mail, password);
+}
+
+class Usuario {
+    constructor(email, contrasenia) {
+        this.email = email;
+        this.contrasenia = contrasenia;
+    }
+}
+
+function guardarUsuario(usuario)
+{    
+    usuarios.push(usuario); 
+}
+
+function guardarEnStorage(){
+let usuarioJson= JSON.stringify(usuarios);
+    localStorage.setItem("usuarios", usuarioJson);
 }
 
 function recuperarLS()
 {
+    if(localStorage.getItem("usuarios") == null )
+    {
+        return null;
+    }
     let datos = JSON.parse(localStorage.getItem("usuarios"));
     return datos; 
 }
 
 
 
-if (btnGuardar !== undefined && btnGuardar !== null)
-{
-    btnGuardar.addEventListener("click", (e)=>{
-        e.preventDefault();
-        inicioSesion(usuariosLS);
-    });
-}
 function limpiarCampos() 
 {
     nombre.value = "";
@@ -237,30 +303,20 @@ function limpiarCampos()
     passReg.value = "";
     email.value = "";
 }
-function crearUsuario()
-{
-    let mail = email.value;
-    let password = pass.value;
-    const user = new Usuario(mail, password);
-    return user;
-}
 
-function guardarUsuario(usuario)
-{    
-    usuarios.push(usuario);
-}
 
-function guardarEnStorage(){
-    localStorage.setItem(usuarios);
-}
 // btn olvido de contraseña (este ya anda)
 function olvidoPass(){
     Swal.fire({
-        title: 'JAJA, Colgado',
+        title: 'te olvidaste el password?',
         text: 'Pues, te jodes',
         icon: 'error',
         confirmButtonText: 'Esta funcion no ha sido desarrollada!!'
     })
 }
 // finaliza
+//------------------Empieza Api-------------//
 
+fetch('https://www.thecocktaildb.com/api.php')
+.then((response) => response.json())
+.then((datos) => console.log(datos));

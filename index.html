@@ -15,20 +15,30 @@
 <body id="bodyindex" class="bgColor">
 
     <div id="content">
+        <!-- Empieza Nav -->
+
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+            <div class="container-fluid">
+                <h2 class="text-center">Tienda de Bebidas</h2>
+                <div class="d-flex justify-content-end text-center mx-5">
+                    <input class="form-control me-2" type="search" placeholder="Tipo de Bebida" aria-label="Search" id="filtro">
+                    <a id="btn-filtrar" onclick="filtrar()" class="btn Color">Filtrar</a>
+                </div>
+            </div>
+        </nav>
+        <!-- Finaliza Navbar -->
         <header class="column-xs main-xs-between cross-xs-center full-image-wrap">
             <img class="full-image" src="./imgs/Coctelearte.gif" alt="">
-            <a href="#main" class="down-arr">&#8595;</a>
+            <a href="#main" class="down-arr align-items-end">&#8595;</a>
         </header>
         <main id="main">
             <section class="row-xs main-xs-center cross-xs-center distancia">
-                <a href="#main2" class="down-arr">&#8595;</a>
+                <a href="#seccion2" class="down-arr">&#8595;</a>
                 <h3>CONTACTO</h3>
                 <p>Av. del Mediterráneo, 37 03500 Benidorm, Alicante </hr>(+34) 96 585 90 18</br>info@bodegaelbarril.com </br>Horario de 10:00 a 19:00h - Domingos Cerrado </p>
             </section>
-        </main>
-        <main id="main2">
-            <section class="row-xs main-xs-center cross-xs-center">
-                <a href="#nav" class="down-arr">&#8595;</a>
+            <section id="seccion2" class="row-xs main-xs-center cross-xs-center">
+                <a href="#panel" class="down-arr">&#8595;</a>
                 <h3>En 2016 abrimos nuestras puertas en nuestra tienda física de Licores y Bebidas situada en Fuenlabrada, un proyecto de jóvenes emprendedores los cuales, mezclaron su formación y conocimiento en el sector, junto con su máxima ilusión y ganas
                     de satisfacer las necesidades de nuestros clientes en cuestión de bebidas. Obteniendo como resultado Licoteca Fuenlabrada. Brindamos una nueva experiencia de compra de bebidas y licores. En un ambiente moderno y exclusivo, donde nuestros
                     clientes podrán descubrir los secretos mejor guardados de su bebida favorita y conocer con detalle su origen, distintos procesos de elaboración, fabricantes y mucho más.</h3>
@@ -36,16 +46,15 @@
         </main>
     </div>
 
-    <!-- Empieza Nav -->
 
+    <!-- Navbar 
     <nav class="navbar bgColor d-flex align-items-stretch tmnBarra" id="nav">
         <h2 class="text-info my-2 text-center">Tienda de Bebidas</h2>
         <div class="d-flex justify-content-end text-center mx-5">
             <input class="form-control me-2" type="search" placeholder="Tipo de Bebida" aria-label="Search" id="filtro">
             <a id="btn-filtrar" onclick="filtrar()" class="btn Color">Filtrar</a>
         </div>
-    </nav>
-    <!-- Termina Nav -->
+    </nav> Termina Nav -->
     <!-------------------------------------------------------------------------------------------->
     <!-----------------------------Empieza carrito  ---------------------------------------------->
     <!-------------------------------------------------------------------------------------------->

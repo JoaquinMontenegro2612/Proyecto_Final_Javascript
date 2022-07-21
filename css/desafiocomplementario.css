@@ -13,7 +13,7 @@
 
 #fotoProducto {
     width: 10vw;
-    height: auto;
+    height: 100vh;
 }
 
 .tmnLogo {
@@ -64,6 +64,8 @@ a:focus {
 h3 {
     font-size: 1.5rem;
     margin: 15;
+    text-align: center;
+    justify-content: center;
 }
 
 header {
@@ -96,11 +98,10 @@ section {
 }
 
 section:nth-child(2) {
-    background: #ECF0F1;
     color: black;
 }
 
-.full-image-wrap {
+.full-ibage-wrap {
     min-height: 100%;
     overflow: hidden;
     position: relative;
@@ -118,6 +119,8 @@ section:nth-child(2) {
 
 .distancia {
     line-height: 30px;
+    align-items: center;
+    justify-content: center;
 }
 
 

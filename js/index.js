@@ -225,12 +225,14 @@ function iniciarSesion() {
         usuario = crearUsuario();
         guardarUsuario(usuario);
         guardarEnStorage();
+        window.open("./index.html");
     } else {
         let usuarioGuardado = usuariosLS.find(userSaved => userSaved.email == user);
         if (usuarioGuardado == null) {
             usuario = crearUsuario();
             guardarUsuario(usuario);
             guardarEnStorage();
+            window.open("./index.html");
         } else {
             if (pass == usuarioGuardado.contrasenia) {
                 window.open("./index.html");
@@ -265,7 +267,13 @@ function guardarUsuario(usuario) {
 
 function guardarEnStorage() {
     let usuarioJson = JSON.stringify(usuarios);
-    localStorage.setItem("usuarios", usuarioJson);
+    if(document.getElementById("guardar").checked == true ){
+        localStorage.setItem("usuarios", usuarioJson);
+    }
+    else{
+        sessionStorage.setItem("usuarios", usuarioJson);
+        }
+    
 }
 
 function recuperarLS() {

@@ -207,27 +207,32 @@ function guardar(valor) {
     }
 }
 
-//function recuperarDatos(){}
 
 function iniciarSesion() {
+    const user = document.getElementById("user")?.value;
+    const pass = document.getElementById("pass")?.value;
+    if (user == null || user == "" || user == undefined || pass == null || pass == "" || pass == undefined) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El usuario o la contraseña no pueden estar vacios!'
+        });
+        return;
+    }
     let usuario;
-
     let usuariosLS = recuperarLS();
     if (usuariosLS == null) {
         usuario = crearUsuario();
         guardarUsuario(usuario);
-        debugger;
         guardarEnStorage();
     } else {
-        const user = document.getElementById("user");
-        let usuarioGuardado = usuariosLS.find(userSaved => userSaved.email == user.value);
+        let usuarioGuardado = usuariosLS.find(userSaved => userSaved.email == user);
         if (usuarioGuardado == null) {
             usuario = crearUsuario();
             guardarUsuario(usuario);
             guardarEnStorage();
         } else {
-            const pass = document.getElementById("pass");
-            if (pass.value == usuarioGuardado.contrasenia) {
+            if (pass == usuarioGuardado.contrasenia) {
                 window.open("./index.html");
             } else {
                 olvidoPass();
@@ -237,6 +242,7 @@ function iniciarSesion() {
     }
 
 }
+
 
 function crearUsuario() {
     const user = document.getElementById("user");
@@ -287,7 +293,7 @@ function olvidoPass() {
         text: 'Pues, te jodes',
         icon: 'error',
         confirmButtonText: 'Esta funcion no ha sido desarrollada!!'
-    })
+    });
 }
 
 // finaliza

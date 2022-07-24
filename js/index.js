@@ -166,8 +166,8 @@ function buscarDetalle(categoria, id) {
     fetch(url + categoria)
         .then(response => response.json())
         .then(data => {
-            // let detalle = document.getElementById("detalle" + id);
-            // detalle.innerHTML = data.ingredients[0].strDescription;
+            let detalle = document.getElementById("detalle" + id);
+            detalle.innerHTML = data.ingredients[0].strDescription;
             buscar(data.ingredients[0].strDescription);
         })
 }

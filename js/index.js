@@ -65,7 +65,7 @@ window.onload = function() {
                 <p id="descripcionProducto" class="text-white fs-1">${producto.Descripcion}</p> 
                 <p id="precioProducto" class="align-items-end"">$${producto.Precio}</p>
                 <button class="btn btn-info" id="btn-buscar-detalle" onclick="buscarDetalle('${producto.Categoria}','${producto.Id}')">Descripcion</button>
-                <p id="detalle${producto.Id}" class="fs-4"></p>
+                <p id="detalle${producto.Id}" class="fs-4 text-black"></p>
                 <div class="d-flex input-group justify-content-center align-items-end ">
                 <button class="bg-dark text-warning input-group-text menos" onclick="restar('${producto.Id}')">-</button>
                 <input id="${producto.Id}" type="text" class="bg-dark text-white w-25 text-center input" value="0" readonly></input>

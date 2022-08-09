@@ -25,26 +25,6 @@
     </nav>
 
     <!-- Finaliza Navbar -->
-    <!-------------------------------------------------------------------------------------------->
-    <!-----------------------------Empieza carrito  ---------------------------------------------->
-    <!-------------------------------------------------------------------------------------------->
-
-    <div class="bgColor text-white position-absolute vertical-align-items tmnCarrito w-10 end-0 ">
-        <h5 class="fs-5 mt-3 text-center mx-1 ">Detalle de su compra</h5>
-        <hr color="white " size=5>
-        <div class="d-flex flex-column ">
-            <div id="detalleCarrito " class="d-flex flex-column "></div>
-            <div class="d-flex flex-row pb-4 end-3 position-sticky ">
-                <hr color="white " size=5>
-                <p class="mx-1 ">Total: </p>
-                <span id="total " class="bg-white text-dark "> 0.00</span>
-            </div>
-        </div>
-    </div>
-
-    <!-------------------------------------------------------------------------------------------->
-    <!-----------------------------termina carrito  ---------------------------------------------->
-    <!-------------------------------------------------------------------------------------------->
 
     <header class="column-xs main-xs-between cross-xs-center full-image-wrap ">
         <img class="full-image " src="./imgs/Coctelearte.gif " alt=" ">
@@ -53,8 +33,24 @@
 
 
     <!-- Secciones -->
+    <div id="secciones">
     <div id="productos" class="d-flex text-center flex-column full-fixed"></div>
-
+    <!-----------------------------Empieza carrito  ---------------------------------------------->
+    <div class="bgColor text-white vertical-align-items tmnCarrito w-10 end-0 ">
+        <h5 class="fs-5 mt-3 text-center mx-1 ">Detalle de su compra</h5>
+        <hr color="white " size=5>
+        <div class="d-flex flex-column ">
+            <div id="detalleCarrito" class="d-flex flex-column "></div>
+            <div class="d-flex flex-row pb-4 end-3 position-sticky ">
+                <hr color="white " size=5>
+                <p class="mx-1 ">Total: </p>
+                <span id="total" class="bg-white text-dark "> 0.00</span>
+            </div>
+            <button onclick="finalizarCompra()" class="btn btn-dark">Finalizar compra</button>
+                </div>
+    </div>
+    <!-----------------------------termina carrito  ---------------------------------------------->
+</div>
     <!-- Secciones -->
     <!--------------------- Empieza footer ----------------------------------------------------------------------------->
     <footer>

@@ -138,9 +138,9 @@ function restar(bebida) {
 function agregar(idLista) {
     // agregar un producto a la lista de carrito de compras
     productos.forEach(producto => {
-        debugger;
         if (producto.Id == idLista) {
             producto.Cantidad = document.getElementById(idLista).value;
+            if(producto.Cantidad == undefined|| producto.Cantidad == null||producto.Cantidad == 0)return;
             actualizarTotal(producto);
             if (document.getElementById(producto.Nombre + "_" + idLista) !== null) {
                 document.getElementById(producto.Nombre + "_" + idLista).remove();
@@ -154,6 +154,15 @@ function agregar(idLista) {
     })
 
 };
+
+function finalizarCompra(){
+    Swal.fire({
+        title: 'Finalizar compra',
+        text: 'Esta funcion todavia no anda',
+        icon: 'error',
+        confirmButtonText: 'Esta funcion no ha sido desarrollada!!'
+    });
+}
 
 function actualizarTotal(producto) {
     let subtotal = producto.Precio * producto.Cantidad;
